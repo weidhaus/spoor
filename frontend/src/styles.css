@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Design tokens: the single source for every colour in the interface.
+   Feature components use the semantic utilities below (bg-surface, text-fg-secondary, ...), never literals. */
+:root {
+  --canvas: #f8fafc;
+  --surface: #ffffff;
+  --surface-subtle: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b; /* only on surface or canvas */
+  --border-subtle: #e2e8f0; /* decorative boundaries only */
+  --border-control: #64748b; /* identifiable input, select and checkbox boundaries */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-pressed: #1e40af;
+  --on-primary: #ffffff;
+  --selected-surface: #eff6ff;
+  --selected-text: #1d4ed8;
+  --danger-action: #b91c1c;
+  --danger-action-hover: #991b1b;
+
+  /* Badge pairs: text / background / border */
+  --success-fg: #166534; --success-bg: #f0fdf4; --success-border: #bbf7d0;
+  --attention-fg: #92400e; --attention-bg: #fffbeb; --attention-border: #fde68a;
+  --failure-fg: #991b1b; --failure-bg: #fef2f2; --failure-border: #fecaca;
+  --info-fg: #1e40af; --info-bg: #eff6ff; --info-border: #bfdbfe;
+  --neutral-fg: #475569; --neutral-bg: #f1f5f9; --neutral-border: #cbd5e1;
+
+  --shadow-float: 0 8px 24px rgba(15, 23, 42, 0.12);
+
+  /* shadcn semantic variables, mapped onto the tokens above */
+  --radius: 0.5rem;
+  --background: var(--canvas);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-primary);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-subtle);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--surface-subtle);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--danger-action);
+  --border: var(--border-subtle);
+  --input: var(--border-control);
+  --ring: var(--primary);
+  --chart-1: var(--primary);
+  --chart-2: #64748b;
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-fg: var(--text-primary);
+  --color-fg-secondary: var(--text-secondary);
+  --color-fg-muted: var(--text-muted);
+  --color-line: var(--border-subtle);
+  --color-line-control: var(--border-control);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-on-primary: var(--on-primary);
+  --color-selected: var(--selected-surface);
+  --color-selected-fg: var(--selected-text);
+  --color-danger: var(--danger-action);
+  --color-danger-hover: var(--danger-action-hover);
+  --color-success-fg: var(--success-fg); --color-success-bg: var(--success-bg); --color-success-border: var(--success-border);
+  --color-attention-fg: var(--attention-fg); --color-attention-bg: var(--attention-bg); --color-attention-border: var(--attention-border);
+  --color-failure-fg: var(--failure-fg); --color-failure-bg: var(--failure-bg); --color-failure-border: var(--failure-border);
+  --color-info-fg: var(--info-fg); --color-info-bg: var(--info-bg); --color-info-border: var(--info-border);
+  --color-neutral-fg: var(--neutral-fg); --color-neutral-bg: var(--neutral-bg); --color-neutral-border: var(--neutral-border);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+
+  --radius-sm: 4px;
+  --radius-md: 6px; /* standard components */
+  --radius-lg: 8px; /* cards and table containers */
+  --radius-xl: 10px; /* dialogs and sheets */
+  --shadow-float: var(--shadow-float);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas text-fg font-sans text-sm antialiased;
+    font-feature-settings: "cv11";
+  }
+  /* One focus treatment everywhere: 2px primary outline, 2px offset. */
+  :focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Menu and listbox options keep a 44px hit height on coarse pointers. */
+@media (pointer: coarse) {
+  [role="menuitem"],
+  [role="option"] {
+    min-height: 44px;
+  }
+}

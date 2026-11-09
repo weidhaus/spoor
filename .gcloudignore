@@ -1,0 +1,17 @@
+# Cloud Build upload: never send secrets, local state or dev artefacts.
+.gcloudignore
+.env
+.env.*
+!.env.example
+secrets/
+data/
+.venv/
+frontend/node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+tests/
+deploy/
+*.md

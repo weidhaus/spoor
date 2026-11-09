@@ -1,0 +1,12 @@
+.env
+.venv/
+data/
+secrets/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+tests/
+frontend/node_modules/
+frontend/dist/
+*.md

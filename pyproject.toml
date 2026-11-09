@@ -1,0 +1,22 @@
+[project]
+name = "spoor"
+version = "0.1.0"
+requires-python = ">=3.15"
+dependencies = [
+    "authlib>=1.9.1",
+    "fastapi>=0.161.1",
+    "google-auth>=2.62.0",
+    "httpx2>=2.16.0",
+    "itsdangerous>=2.2.0",
+    "python-multipart>=0.0.32",
+    "requests>=2.34.2",
+    "uvicorn>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

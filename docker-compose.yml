@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    ports:
+      - "127.0.0.1:8000:8000"   # localhost only
+    volumes:
+      - data:/data
+      - ./secrets:/secrets:ro  # e.g. Google service-account key
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+volumes:
+  data:
